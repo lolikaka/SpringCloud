@@ -1,0 +1,25 @@
+server:
+  port: 8755
+spring:
+  application:
+    name: service-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: xujin_route
+          uri: http://baidu.com:80/
+          predicates:
+            - Path=/baidu
+
+#指明注册中心的位置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
